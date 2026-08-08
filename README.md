@@ -25,6 +25,8 @@
 
 ---
 
+https://www.loom.com/share/bcd3a5eefaf94c69b55b33b9496be153
+
 # Overview
 
 AI Polymer Costing App is a secure enterprise web application designed to automate RFQ processing, production-feasibility assessment, injection-moulding planning, polymer material costing, machine-cost calculation, packaging-cost calculation, mould amortization, and final product-cost generation.
