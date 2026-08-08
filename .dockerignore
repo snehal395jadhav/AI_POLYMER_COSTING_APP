@@ -1,0 +1,47 @@
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Virtual environments
+.venv
+venv
+env
+
+# Python cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+.pytest_cache
+.mypy_cache
+.ruff_cache
+
+# Local SQLite DB — never bake into image
+data/*.db
+data/*.sqlite*
+
+# IDE / editor
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+
+# Docker itself
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Docs that aren't needed at runtime
+*.md

@@ -1,0 +1,29 @@
+services:
+  costing:
+    build: .
+    image: costing-desk:latest
+    container_name: costing-desk
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      # REQUIRED: set a long, random secret before first start.
+      # Generate one with: python -c "import secrets; print(secrets.token_hex(32))"
+      COSTING_SECRET: "${COSTING_SECRET:-change-me-to-a-random-64-char-hex-string}"
+      OPENROUTER_API_KEY: "${OPENROUTER_API_KEY:-}"
+      OPENROUTER_MODEL: "${OPENROUTER_MODEL:-nvidia/nemotron-3-nano-30b-a3b:free}"
+      OPENROUTER_MAX_TOKENS: "${OPENROUTER_MAX_TOKENS:-1200}"
+      OPENROUTER_REQUESTS_PER_HOUR: "${OPENROUTER_REQUESTS_PER_HOUR:-20}"
+      COSTING_DEMO_DATA: "${COSTING_DEMO_DATA:-0}"
+    volumes:
+      # Persist the SQLite database across container restarts / rebuilds
+      - costing-data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:5000/login"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  costing-data:
